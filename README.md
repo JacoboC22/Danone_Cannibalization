@@ -1,8 +1,10 @@
-# 🥛 Innovation Cannibalization Analysis
+# Innovation Cannibalization Analysis
 
 A data science pipeline built at **Danone** to measure how newly launched products ("innovations") cannibalize sales of existing SKUs within the same category, using time series decomposition and causal impact estimation across retail store-level sales data.
 
-## 📌 Project Overview
+> ⚠️ **Note:** This is a generalized, anonymized version of an internal Danone project. All retailer names, internal database schemas, file paths, and real sales figures have been removed or replaced with generic placeholders. The dataset itself is not included — this repository showcases the **methodology and code**, not proprietary business data.
+
+## Project Overview
 
 When a company launches a new product, part of its sales often comes from customers who would otherwise have bought a similar existing product — this is called **cannibalization**. This project builds an end-to-end pipeline that automatically:
 
@@ -12,8 +14,6 @@ When a company launches a new product, part of its sales often comes from custom
 4. Aggregates results at the brand level to answer: *which brands cannibalize which, and by how much?*
 
 The pipeline was tested across the **top 20 highest-selling stores** for the yogurt/dairy category in France.
-
-> ⚠️ **Note:** This is a generalized, anonymized version of an internal Danone project. All retailer names, internal database schemas, file paths, and real sales figures have been removed or replaced with generic placeholders. The dataset itself is not included — this repository showcases the **methodology and code**, not proprietary business data.
 
 ## 🎯 Objectives
 
