@@ -1,6 +1,6 @@
 # Innovation Cannibalization Analysis
 
-A data science pipeline built at **Danone** to measure how newly launched products ("innovations") cannibalize sales of existing SKUs within the same category, using time series decomposition and causal impact estimation across retail store-level sales data.
+A data science pipeline built at my **Danone** Internship to measure how newly launched products ("innovations") cannibalize sales of existing SKUs within the same category, using time series decomposition and causal impact estimation across retail store-level sales data.
 
 > ⚠️ **Note:** This is a generalized, anonymized version of an internal Danone project. All retailer names, internal database schemas, file paths, and real sales figures have been removed or replaced with generic placeholders. The dataset itself is not included — this repository showcases the **methodology and code**, not proprietary business data.
 
@@ -15,14 +15,14 @@ When a company launches a new product, part of its sales often comes from custom
 
 The pipeline was tested across the **top 20 highest-selling stores** for the yogurt/dairy category in France.
 
-## 🎯 Objectives
+## Objectives
 
 - Automatically detect product launches from raw transactional sales data (no manual launch-date tagging needed).
 - Identify which existing products lose sales after a new launch, filtering out unrelated causes (discontinuations, insufficient data).
 - Estimate the **causal**, not just correlational, effect of a launch on victim SKUs — separating true cannibalization from category-wide trends or seasonality.
 - Roll up SKU-level effects into **brand-vs-brand** cannibalization insights across multiple stores.
 
-## 🔍 Methodology
+## Methodology
 
 ### 1. Data Preparation
 - Joined store-level sales fact tables with product, store, customer, supplier, brand, and calendar dimension tables.
@@ -53,7 +53,7 @@ The pipeline was tested across the **top 20 highest-selling stores** for the yog
 - Consolidated all significant innovation→victim effects into a single results table.
 - Aggregated to the **brand level**, computing total units lost, number of affected stores, and average relative drop per brand pair — enabling both "who cannibalizes us" and "who do we cannibalize" views.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Language:** Python (PySpark + pandas)
 - **Big data processing:** PySpark (Spark SQL, DataFrame joins/aggregations)
@@ -61,14 +61,14 @@ The pipeline was tested across the **top 20 highest-selling stores** for the yog
 - **Causal inference:** `causalimpact` (Bayesian structural time series), with `scikit-learn` (LinearRegression) + `scipy` (t-test) as a fallback method
 - **Data manipulation:** pandas, numpy
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 ├── Baseline_innovations20stores.ipynb   # Full pipeline: data prep, decomposition, detection, causal impact, aggregation
 └── README.md
 ```
 
-## 🚀 How to Run
+## How to Run
 
 This notebook was originally built on a Spark-based data platform (e.g., Databricks). To adapt it to your own environment:
 
@@ -81,7 +81,7 @@ This notebook was originally built on a Spark-based data platform (e.g., Databri
 
 3. Run the notebook top to bottom. The core reusable functions (`build_core_matrices`, `detect_innovation_launches`, `candidate_victims_of_innovation`, `run_causal_effect`, `run_innovation_cannibalization_pipeline`) can be imported and applied to any retail sales dataset with a similar schema.
 
-## 📈 Key Insights (Methodology-level)
+## Key Insights (Methodology-level)
 
 - Combining **STL decomposition** with an **availability filter** significantly reduces false positives from stockouts being mistaken for demand drops.
 - Using **CausalImpact with category-level controls** (rather than a simple before/after comparison) isolates the true effect of a launch from broader category trends and seasonality.
